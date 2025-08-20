@@ -1,0 +1,88 @@
+shell script consists of set of commands to perform a task;
+all commands execute sequentially;
+#!/bin/bang :- it is shebang 
+
+
+_____________________________________________________________________________________________________
+what is SHEBANG:-
+it shows which interpreter or which shell will be used for executing the query
+
+echo 'hello world':- sending output to terminal;
+
+---------------
+run using:_ 
+./script.sh
+/path/script.sh
+bash script.sh
+-------------
+
+./basic.sh by running it if error occurs like persmission denied u can use:- bash script.sh; then it will show the output;
+or
+you can do:- chmod +x basic.sh; here u r giving the permission of execution to the file;
+
+_____________________________________________________________________________________________________
+COMMENTS :-
+# SINGLE line
+
+<<COMMENT
+this is
+a multiline
+comment in
+the script
+COMMENT
+
+_____________________________________________________________________________________________________
+vi basic.sh
+cat basic.sh (read the file)
+VI=     vi is a text editor available in Unix/Linux systems. It's used to create, view, 
+        and edit text  files, including shell scripts
+To use vi in shell scripting:
+
+1. Open a shell script file:
+vi script.sh
+
+2. Enter Insert Mode to write your script:
+   Press i to start typing.
+
+4. Write your shell script, for example:
+#!/bin/bash
+echo "Hello, World!"
+
+5. Save and Exit:
+Press Esc to return to Normal Mode.
+Type :wq and press Enter to save and quit.
+
+ Common vi Commands
+Action	           Command
+_______           ____________
+
+Enter Insert Mode	    i
+Save file	            :w
+Quit vi	                :q
+Save and Quit	        :wq or ZZ
+Quit without saving	    :q!
+Delete a line	        dd
+Undo last change	    u
+Search text	            /text
+
+
+
+Always start your script with #!/bin/bash or the appropriate shebang.
+Use chmod +x script.sh to make your script executable.
+Test your script by running ./script.sh.
+========================================================================
+VARIABLES:-
+name = 'ssd'
+echo 'hello $name':- hello ssd
+name = 's'
+then it will change the value of variable in the same file; as in programming languages it woll replace the previous one;
+
+to show some command like host name,etc:-
+host = $(hostname)
+rcho 'machine name is $host':- it will show = machine name is redhar(ex)
+
+--
+variable we can create only readonly mode that means one can read but can't modify it;
+this is  CONSTANT variable;
+command:-
+readonly var = 'Hello'
