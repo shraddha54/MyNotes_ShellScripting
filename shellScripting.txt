@@ -86,3 +86,318 @@ variable we can create only readonly mode that means one can read but can't modi
 this is  CONSTANT variable;
 command:-
 readonly var = 'Hello'
+
+========================================================================================
+
+ARRAY:-
+
+
+******remember the all commands of array is written not in commandline but in vi file.sh;
+in the vi text after "i" command yiu can write these array concepts there;
+MYaRRAY = (1 2 HELLO "Hey hii")
+the array us similar to the original concept, here we separate each elements with SPACE; 
+It is zero indexed;;
+array = (1 02 0.3 hello "hello world")
+echo "value is ${array[3]}"
+## now execute it:--
+bash file.sh;
+output is=== value is hello;
+==========
+to retrieve all values:-
+echo "all vals are ${array[*]}";
+
+== length of the array:
+echo ${#arrayName[*]};
+
+== find range of index values:
+echo {#arrayName[*]:from the index u want : the numbers you wanna see}
+
+array = (1 02 0.3 hello "hello world")
+ex:- echo ${#array[*]:2:2}; 
+output  = 0.3 hello 
+
+== update the array with new values:
+myArray += (new 30 40)
+print it; echo 'values are ${array[*]}; it will show the last 3 added one also with the older ones;
+
+== arrays key-value:
+syntax:-
+        declare -A myArray
+        myArray = ([name]= ssd [age] = 20)
+        echo ${myArray[name]};
+output is = ssd
+====================================================================================================
+STRING OPERATIONS:
+ex:-
+myVar = "Hey buddy, how are you?"
+myVarlen = ${#myVar}
+echo "lenght is: $myVarlen"; output=  length is 23;
+
+ex = 'Hello World!"
+* length = ${#ex}
+* upper = ${ex^^}
+* lower = ${ex,,}
+* replace = ${ex/World/Duniya}
+* slice = ${myVar:4:5} :- index 6 to 11 characters length; here it is inclusive of index and 5 characters  i.e.including the 4th index
+=====================================================================================================
+USER INTERACTION:
+syntax:-
+ read name
+ echo "name is $name
+ by doing bash file.sh:-
+ ssd
+ name is ssd
+ -----
+ we can add the written line to make the user to understand ehat to do in the blank line:-
+ read -p "Your Name?" name
+ echo "your name is $name"
+
+ bash file.sh;
+ output:-
+ Your name?
+ ssd
+ your name is ssd;
+ ======================================================================================================
+ ARITHMATIC OPERATIONS:
+ how to use expression:-
+ using LET command:
+        x = 10
+        y = 2
+        let mul = $x*$y
+        echo '$mul'; output = 20
+        or
+        echo '$(($x - $y))'; output = 8
+
+=======================================================================================================
+CONDITIONS:
+read -p "enter your mark:" marks
+
+if [[  marks -gt 40 ]]
+then
+        echo "You are pass"
+else 
+        echo "You are fail!"
+fi
+
+
+(fi is end of the condition)
+
+EX;- SECOND Example
+
+#!/bin/bash
+
+# Prompt user to enter marks
+read -p "Enter your marks: " marks
+
+# Check the class based on marks
+if [ "$marks" -ge 80 ]
+then
+    echo "First Class"
+elif [ "$marks" -ge 60 ]
+then
+    echo "Second Class"
+else
+    echo "Fail"
+fi
+
+====
+now with CASE statements:
+#!/bin/bash
+
+# Display options
+echo "Choose an option:"
+echo "a) Show current location"
+echo "b) List files in current directory"
+echo "c) Print current date"
+
+# Read user choice
+read -p "Enter your choice (a/b/c): " choice
+
+# Case statement to handle the choice
+case "$choice" in
+    a)pwd;;
+    b)ls;;
+    c) echo "date is:-
+       date
+       echo "end......"
+       ;;
+    *)echo "Invalid choice. Please enter a, b, or c. ;;
+esac
+
+as in c, we can write multiple lines and where we want to put an end we can give the ;; mark;
+
+operators:-----
+In shell scripting (like in Bash), **comparison operators** are used to compare values—especially in conditional statements like `if`, `while`, or `case`. Here's a breakdown of the most common **comparison operators** in shell:
+
+---
+
+### 🔢 **Numeric Comparison Operators**
+
+Used with `test` or `[ ]`:
+
+| Operator | Meaning               | Example                  |
+|----------|------------------------|--------------------------|
+| `-eq`    | Equal to               | `[ "$a" -eq "$b" ]`      |
+| `-ne`    | Not equal to           | `[ "$a" -ne "$b" ]`      |
+| `-gt`    | Greater than           | `[ "$a" -gt "$b" ]`      |
+| `-lt`    | Less than              | `[ "$a" -lt "$b" ]`      |
+| `-ge`    | Greater than or equal  | `[ "$a" -ge "$b" ]`      |
+| `-le`    | Less than or equal     | `[ "$a" -le "$b" ]`      |
+
+---
+
+### 🔤 **String Comparison Operators**
+
+Used to compare strings:
+
+| Operator | Meaning               | Example                  |
+|----------|------------------------|--------------------------|
+| `=`      | Equal to               | `[ "$a" = "$b" ]`        |
+| `!=`     | Not equal to           | `[ "$a" != "$b" ]`       |
+| `<`      | Less than (lexical)    | `[ "$a" \< "$b" ]`       |
+| `>`      | Greater than (lexical) | `[ "$a" \> "$b" ]`       |
+| `-z`     | String is empty        | `[ -z "$a" ]`            |
+| `-n`     | String is not empty    | `[ -n "$a" ]`            |
+
+> Note: `<` and `>` must be **escaped** with a backslash (`\`) to avoid shell interpretation.
+
+---
+
+### ✅ **Logical Operators**
+
+Used to combine conditions:
+
+| Operator | Meaning               | Example                          |
+|----------|------------------------|----------------------------------|
+| `&&`     | Logical AND            | `[ "$a" -gt 5 ] && [ "$b" -lt 10 ]` |
+| `||`     | Logical OR             | `[ "$a" -gt 5 ] || [ "$b" -lt 10 ]` |
+| `!`      | Logical NOT            | `! [ "$a" -eq "$b" ]`            |
+
+---
+
+### 🧠 Example Usage in a Script
+
+```bash
+#!/bin/bash
+
+a=10
+b=20
+
+if [ "$a" -lt "$b" ]; then
+  echo "$a is less than $b"
+fi
+```
+========================================================================================================
+LOGICAL OPERATORS:
+#!/bin/bash
+
+# Read age and country from user
+read -p "Enter your age: " age
+read -p "Enter your country: " country
+
+# Check voting eligibility
+if [[ "$age" -ge 18 ]] && [[ "$country" == "india" ]]
+then
+    echo "You are eligible to vote."
+else
+    echo "You are not eligible to vote."
+fi
+***** note:-
+ DOUBLE EQUAL SIGN IS USED TO COMPARE BET TWO STRINGS AND eq IS USED TO COMPARE BETWEEN NUMERIC VALUES ;
+or oerator is same, use "||"
+
+--- conditional if operator in one line:--_______
+age = 18
+[[ age -gte 18 ]] && echo "adult || echo "minor"
+
+on executing it will show :- minor;
++=====================================================================================================
+LOOPS:
+++ type - 1
+#!/bin/bash
+
+for i in {1..20}
+do
+  echo "Number: $i"
+done
+
+++ type - 2
+#!/bin/bash
+
+for i in 1 2 3 4 5
+do
+  echo "Count: $i"
+done
+
+++ type - 3
+#!/bin/bash
+
+for name in Alice Bob Charlie
+do
+  echo "Hello, $name!"
+done
+
+++ type - 4
+#!/bin/bash
+
+for i in {1..3}
+do
+  echo "User$i"
+done
+
+++ type - 5
+#!/bin/bash
+
+for item in 1 2 hello world
+do
+  echo "Item: $item"
+done
+====
+output:
+Item: 1
+Item: 2
+Item: hello
+Item: world
+
+++ iteration through the file:
+#!/bin/bash
+
+# Set the file path
+file="/path/to/file.txt"
+
+# Iterate through each word in the file
+for word in $(cat "$file")
+do
+  echo "Word: $word"
+done
+
+## here file is a variable , for this u need to create the file first and then it will iterate thriugh its contents;
+
+++ iteration through array; remeer that here iteration is like original for loop but as numeric (index) iteration u need double brackets:--
+_________________________________________
+#!/bin/bash
+
+# Define an array
+my_array=(apple banana cherry date)
+
+# Get the length of the array
+length=${#my_array[@]}
+
+# Loop using index
+for (( i=0; i<length; i++ ))
+do
+  echo "Element $i: ${my_array[$i]}"
+done
+__________________________________________
+### u can do it with another ways:-
+
+#!/bin/bash
+
+# Define an array with mixed values
+my_array=(1 2 hello world 3.14)
+
+# Loop through the array
+for item in "${my_array[@]}"
+do
+  echo "Array item: $item"
+done
